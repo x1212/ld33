@@ -22,10 +22,10 @@ func _process(delta):
 		rot.y -= delta*CAM_ROT_SPEED
 		set_rotation(rot)
 	elif (Input.is_action_pressed("camera_zoom_in")):
-		zoom += delta*CAM_ZOOM_SPEED
-		get_node("Camera").set_perspective(zoom, 1*zoom, 100*zoom)
-	elif (Input.is_action_pressed("camera_zoom_out")):
 		zoom -= delta*CAM_ZOOM_SPEED
-		get_node("Camera").set_perspective(zoom, 1*zoom, 100*zoom)
+		get_node("Camera").set_perspective(zoom, 1, 300)
+	elif (Input.is_action_pressed("camera_zoom_out")):
+		zoom += delta*CAM_ZOOM_SPEED
+		get_node("Camera").set_perspective(zoom, 1, 300)
 	
 
