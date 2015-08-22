@@ -12,7 +12,7 @@ var cam
 func _ready():
 	# Initialization here
 	randomize()
-	get_node("Sprite3D").set_scale( rand_range(0.5,1.0)*get_node("Sprite3D").get_scale())
+	get_node("Sprite3D").set_scale( rand_range(2.5,5.0)*Vector3(1,1,1))
 	get_node("AnimationPlayer").play("jump",-1,rand_range(0.8,1.2))
 	set_process(true)
 	pass
@@ -20,6 +20,8 @@ func _ready():
 var dead = false
 var vel = Vector3(3,0,0)
 var refcount = 0
+
+var tick = 5.0
 
 func _process(delta):
 	if (dead):
@@ -57,4 +59,23 @@ func _process(delta):
 					grass.queue_free()
 	else:
 		dead = true
+	
+	# make more rabbits
+	
+	tick -= delta
+	if ( tick <= 0.0 and food > 10.0 ):
+		if ( get_parent().get_child_count() > 1 and get_parent().get_child_count() < get_parent().NUM_RABBITS*3):
+			for i in range(0, get_parent().get_child_count()):
+				var other = get_parent().get_child(i)
+				if ( tick <= 0.0 and other.get_name() != get_name() and other.tick < 1.0 and other.food > 10.0):
+					tick = 5.0
+					other.tick = 5.0
+					var new = duplicate()
+					new.food = 10.0
+					new.tick = 5.0
+					get_parent().add_child(new)
+			
+			if (tick <= 0.0):
+				tick = 0.99
+	
 
