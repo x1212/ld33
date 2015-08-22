@@ -41,8 +41,20 @@ func _process(delta):
 		vel = Vector3(3,0,0).rotated( Vector3(0,1,0), rand_range(0,360))
 	
 	# hunger system
-	if (food > 0.0):
+	if (food > 10.0):
 		food -= delta*rand_range(0.0,1.0)
+	elif (food > 0.0):
+		food -= delta*rand_range(0.0,1.0)
+		if ( get_parent().get_parent().get_node("plants").get_child_count() > 0 ):
+			var dist = 100.0
+			for i in range (0, get_parent().get_parent().get_node("plants").get_child_count()):
+				var grass = get_parent().get_parent().get_node("plants").get_child(i)
+				if ((grass.get_translation()-get_translation()).length() < dist):
+					dist = (grass.get_translation()-get_translation()).length()
+					vel = 3*((grass.get_translation()-get_translation()).normalized())
+				if ( (grass.get_translation()-get_translation()).length() < 0.5 ):
+					food = 20.0
+					grass.queue_free()
 	else:
 		dead = true
 
