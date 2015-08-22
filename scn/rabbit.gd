@@ -64,7 +64,7 @@ func _process(delta):
 	
 	tick -= delta
 	if ( tick <= 0.0 and food > 10.0 ):
-		if ( get_parent().get_child_count() > 1 and get_parent().get_child_count() < get_parent().NUM_WOLFS*3):
+		if ( get_parent().get_child_count() > 1 and get_parent().get_child_count() < get_parent().NUM_RABBITS*3):
 			for i in range(0, get_parent().get_child_count()):
 				var other = get_parent().get_child(i)
 				if ( tick <= 0.0 and other.get_name() != get_name() and other.tick < 1.0 and other.food > 10.0):
