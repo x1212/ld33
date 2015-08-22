@@ -18,13 +18,13 @@ func _process(delta):
 	if (Input.is_action_pressed("camera_moove_right")):
 		rot.y += delta*CAM_ROT_SPEED
 		set_rotation(rot)
-	elif (Input.is_action_pressed("camera_moove_left")):
+	if (Input.is_action_pressed("camera_moove_left")):
 		rot.y -= delta*CAM_ROT_SPEED
 		set_rotation(rot)
-	elif (Input.is_action_pressed("camera_zoom_in")):
+	if (Input.is_action_pressed("camera_zoom_in")):
 		zoom -= delta*CAM_ZOOM_SPEED
 		get_node("Camera").set_perspective(zoom, 1, 300)
-	elif (Input.is_action_pressed("camera_zoom_out")):
+	if (Input.is_action_pressed("camera_zoom_out")):
 		zoom += delta*CAM_ZOOM_SPEED
 		get_node("Camera").set_perspective(zoom, 1, 300)
 	
