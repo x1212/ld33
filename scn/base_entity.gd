@@ -5,14 +5,19 @@ extends Spatial
 # var a=2
 # var b="textvar"
 
+var cam
+
 func _ready():
 	# Initialization here
 	set_process(true)
 	pass
 
 var vel = Vector3(10,0,0)
+
 func _process(delta):
 	var ray = get_node("RayCast")
+	cam = get_parent().get_parent().get_parent().get_node("world/cam_root")
+	set_rotation( cam.get_rotation() + Vector3(0,0.5*PI,0) )
 	#print( ray.get_collider().get_name() )
 	randomize()
 	var rand = randi()%100
