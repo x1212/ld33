@@ -5,7 +5,7 @@ extends Spatial
 # var a=2
 # var b="textvar"
 
-var food = 20.0
+var food = 5.0
 
 var cam
 
@@ -21,7 +21,7 @@ var dead = false
 var vel = Vector3(3,0,0)
 var refcount = 0
 
-var tick = 5.0
+var tick = 20.0
 
 func _process(delta):
 	if (dead):
@@ -43,19 +43,19 @@ func _process(delta):
 		vel = Vector3(3,0,0).rotated( Vector3(0,1,0), rand_range(0,360))
 	
 	# hunger system
-	if (food > 10.0):
+	if (food > 4.0):
 		food -= delta*rand_range(0.0,1.0)
 	elif (food > 0.0):
 		food -= delta*rand_range(0.0,1.0)
-		if ( get_parent().get_parent().get_node("plants").get_child_count() > 0 ):
+		if ( get_parent().get_parent().get_node("rabbits").get_child_count() > 0 ):
 			var dist = 100.0
-			for i in range (0, get_parent().get_parent().get_node("plants").get_child_count()):
-				var grass = get_parent().get_parent().get_node("plants").get_child(i)
+			for i in range (0, get_parent().get_parent().get_node("rabbits").get_child_count()):
+				var grass = get_parent().get_parent().get_node("rabbits").get_child(i)
 				if ((grass.get_translation()-get_translation()).length() < dist):
 					dist = (grass.get_translation()-get_translation()).length()
-					vel = 3*((grass.get_translation()-get_translation()).normalized())
+					vel = 4*((grass.get_translation()-get_translation()).normalized())
 				if ( (grass.get_translation()-get_translation()).length() < 0.5 ):
-					food = 20.0
+					food = 10.0
 					grass.queue_free()
 	else:
 		dead = true
@@ -68,11 +68,11 @@ func _process(delta):
 			for i in range(0, get_parent().get_child_count()):
 				var other = get_parent().get_child(i)
 				if ( tick <= 0.0 and other.get_name() != get_name() and other.tick < 1.0 and other.food > 10.0):
-					tick = 5.0
-					other.tick = 5.0
+					tick = 60.0
+					other.tick = 40.0
 					var new = duplicate()
-					new.food = 10.0
-					new.tick = 5.0
+					new.food = 5.0
+					new.tick = 20.0
 					get_parent().add_child(new)
 			
 			if (tick <= 0.0):
