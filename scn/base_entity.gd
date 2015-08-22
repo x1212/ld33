@@ -1,0 +1,24 @@
+
+extends Spatial
+
+# member variables here, example:
+# var a=2
+# var b="textvar"
+
+func _ready():
+	# Initialization here
+	set_process(true)
+	pass
+
+var vel = Vector3(10,0,0)
+func _process(delta):
+	var ray = get_node("RayCast")
+	#print( ray.get_collider().get_name() )
+	if ( ray.get_collider() != null and ray.get_collider().get_name() == "col" ):
+		get_node("Sprite3D").set_translation(ray.get_collision_point()-get_translation())
+		set_translation( get_translation() + delta*vel)
+	else:
+		set_translation( get_translation() - delta*vel)
+		randomize()
+		vel = Vector3(10,0,0).rotated( Vector3(0,1,0), rand_range(0,360))
+
