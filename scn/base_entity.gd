@@ -14,7 +14,9 @@ var vel = Vector3(10,0,0)
 func _process(delta):
 	var ray = get_node("RayCast")
 	#print( ray.get_collider().get_name() )
-	if ( ray.get_collider() != null and ray.get_collider().get_name() == "col" ):
+	randomize()
+	var rand = randi()%100
+	if ( ray.get_collider() != null and ray.get_collider().get_name() == "col" and rand < 98 ):
 		get_node("Sprite3D").set_translation(ray.get_collision_point()-get_translation())
 		set_translation( get_translation() + delta*vel)
 	else:
