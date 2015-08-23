@@ -5,7 +5,7 @@ extends Spatial
 # var a=2
 # var b="textvar"
 
-var food = 5.0
+var food = 20.0
 
 var cam
 
@@ -21,7 +21,7 @@ var dead = false
 var vel = Vector3(3,0,0)
 var refcount = 0
 
-var tick = 20.0
+var tick = 30.0
 
 func _process(delta):
 	if (dead):
@@ -55,7 +55,7 @@ func _process(delta):
 					dist = (grass.get_translation()-get_translation()).length()
 					vel = 5*((grass.get_translation()-get_translation()).normalized())
 				if ( (grass.get_translation()-get_translation()).length() < 0.5 ):
-					food = 10.0
+					food = 25.0
 					grass.queue_free()
 	else:
 		dead = true
@@ -64,7 +64,7 @@ func _process(delta):
 	
 	tick -= delta
 	if ( tick <= 0.0 and food > 10.0 ):
-		if ( get_parent().get_child_count() > 1 and get_parent().get_child_count() < get_parent().NUM_WOLFS*3):
+		if ( get_parent().get_child_count() > 1 and get_parent().get_child_count() < get_parent().NUM_WOLFS*2):
 			for i in range(0, get_parent().get_child_count()):
 				var other = get_parent().get_child(i)
 				if ( tick <= 0.0 and other.get_name() != get_name() and other.tick < 1.0 and other.food > 10.0):
