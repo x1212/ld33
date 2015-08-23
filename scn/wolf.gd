@@ -60,6 +60,7 @@ func _process(delta):
 				if ( (grass.get_translation()-get_translation()).length() < 0.5 ):
 					food = 25.0
 					grass.queue_free()
+					get_node("Sprite3D/SpatialSamplePlayer").play("rabbit_cry")
 	else:
 		dead = true
 	
