@@ -12,7 +12,7 @@ var cam
 func _ready():
 	# Initialization here
 	randomize()
-	get_node("Sprite3D").set_scale( rand_range(2.5,5.0)*Vector3(1,1,1))
+	get_node("Sprite3D").set_scale( rand_range(3.5,5.0)*Vector3(1,1,1))
 	get_node("AnimationPlayer").play("jump",-1,rand_range(0.8,1.2))
 	set_process(true)
 	pass
@@ -43,7 +43,7 @@ func _process(delta):
 		vel = Vector3(3,0,0).rotated( Vector3(0,1,0), rand_range(0,360))
 	
 	# hunger system
-	if (food > 4.0):
+	if (food > 5.0):
 		food -= delta*rand_range(0.0,1.0)
 	elif (food > 0.0):
 		food -= delta*rand_range(0.0,1.0)
@@ -53,7 +53,7 @@ func _process(delta):
 				var grass = get_parent().get_parent().get_node("rabbits").get_child(i)
 				if ((grass.get_translation()-get_translation()).length() < dist):
 					dist = (grass.get_translation()-get_translation()).length()
-					vel = 4*((grass.get_translation()-get_translation()).normalized())
+					vel = 5*((grass.get_translation()-get_translation()).normalized())
 				if ( (grass.get_translation()-get_translation()).length() < 0.5 ):
 					food = 10.0
 					grass.queue_free()

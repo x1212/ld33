@@ -12,7 +12,7 @@ var cam
 func _ready():
 	# Initialization here
 	randomize()
-	get_node("Sprite3D").set_scale( rand_range(2.5,5.0)*Vector3(1,1,1))
+	get_node("Sprite3D").set_scale( rand_range(2.5,4.0)*Vector3(1,1,1))
 	get_node("AnimationPlayer").play("jump",-1,rand_range(0.8,1.2))
 	set_process(true)
 	pass
