@@ -30,8 +30,8 @@ func _process(delta):
 		return
 	var ray = get_node("RayCast")
 	cam = get_parent().get_parent().get_parent().get_node("world/cam_root")
-	if (vel.x >= 0.0 ):
-		get_node("Sprite3D").set_rotation( Vector3(0, -asin(vel.normalized().x)+0.5*PI ,0) )
+	if (vel.z >= 0.0 ):
+		get_node("Sprite3D").set_rotation( Vector3(0, asin(vel.normalized().x)+1.5*PI ,0) )
 	else:
 		get_node("Sprite3D").set_rotation( Vector3(0, asin(vel.normalized().x)+0.5*PI ,0) )
 	
