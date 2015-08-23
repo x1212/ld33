@@ -33,7 +33,7 @@ func _process(delta):
 	if ( rand > 990 and tick < 0.0 ):
 		get_parent().get_parent().get_node("plants").spawn_plant( get_translation() )
 		tick = 2.0
-		print("spawn")
+		#print("spawn")
 	elif ( tick < 0.0 ):
 		tick = 1.0
 	else:

@@ -17,9 +17,15 @@ func _process(delta):
 	
 	pass
 
+var current_source = "rabbits"
 
 func create_house( pos_vec2 ):
-	var new_house = house_type.instance()
-	new_house.set_translation( Vector3(pos_vec2.x, 0, pos_vec2.y ) )
-	get_node("mobs/human").add_child(new_house)
+	if ( get_node("mobs/human").resources["trees"] >= 5 ):
+		var new_house = house_type.instance()
+		new_house.set_translation( Vector3(pos_vec2.x, 0, pos_vec2.y ) )
+		new_house.source = current_source
+		get_node("mobs/human").add_child(new_house)
+		get_node("mobs/human").resources["trees"] -= 5
+		print( "house" )
+		print( current_source )
 	pass

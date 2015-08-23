@@ -14,6 +14,9 @@ func _ready():
 
 var vel = Vector3(0,0,0)
 var tick = 0.0
+
+var source = "rabbits"
+
 func _process(delta):
 	var ray = get_node("RayCast")
 	cam = get_parent().get_parent().get_parent().get_node("world/cam_root")
@@ -30,10 +33,10 @@ func _process(delta):
 			randomize()
 			vel = Vector3(0,0,0).rotated( Vector3(0,1,0), rand_range(0,360))
 	rand = randi()%1000
-	if ( rand > 990 and tick < 0.0 ):
-		get_parent().spawn_human_gather( get_translation(), "rabbits" )
+	if ( rand > 500 and tick < 0.0 ):
+		get_parent().spawn_human_gather( get_translation(), source )
 		tick = 2.0
-		#print("spawn")
+		print("spawn_human")
 	elif ( tick < 0.0 ):
 		tick = 1.0
 	else:
