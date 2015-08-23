@@ -16,11 +16,10 @@ func _ready():
 
 func _process(delta):
 	if ( get_node("mobs/human").get_child_count() == 0 ):
-		print( var2str(get_node("mobs/human").get_child_count()) )
-		print("Game Over")
+		#print( var2str(get_node("mobs/human").get_child_count()) )
+		#print("Game Over")
 		game_over = true
 	else:
-		print( var2str(get_node("mobs/human").get_child_count()) )
 		game_over = false
 
 
@@ -36,3 +35,4 @@ func create_house( pos_vec2 ):
 		print( "house" )
 		print( current_source )
 	pass
+
