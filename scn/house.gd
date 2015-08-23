@@ -41,7 +41,7 @@ func _process(delta):
 		tick = 20.0
 	elif ( tick < 0.0 and ( spawner == false )):
 		randomize()
-		get_parent().get_node("human").spawn_human_gather( get_translation() + Vector3(rand_range(1.0,3.0),0,0).rotated( Vector3(0,1,0), rand_range(0,360)), "eater" )
+		get_parent().get_node("human").spawn_human_gather( get_translation() + Vector3(rand_range(2.0,6.0),0,0).rotated( Vector3(0,1,0), rand_range(0,360)), "eater" )
 	else:
 		tick -= delta
 	return
