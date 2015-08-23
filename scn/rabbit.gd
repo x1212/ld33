@@ -12,7 +12,8 @@ var cam
 func _ready():
 	# Initialization here
 	randomize()
-	get_node("Sprite3D").set_scale( rand_range(2.5,4.0)*Vector3(1,1,1))
+	get_node("Sprite3D").set_scale( rand_range(0.7,1.1)*Vector3(1,1,1))
+	get_node("Sprite3D").set_rotation( rand_range(0.0,2*PI)*Vector3(0,1,0))
 	get_node("AnimationPlayer").play("jump",-1,rand_range(0.8,1.2))
 	set_process(true)
 	pass
@@ -30,7 +31,7 @@ func _process(delta):
 		return
 	var ray = get_node("RayCast")
 	cam = get_parent().get_parent().get_parent().get_node("world/cam_root")
-	set_rotation( cam.get_rotation() + Vector3(0,0.5*PI,0) )
+	#set_rotation( cam.get_rotation() + Vector3(0,0.5*PI,0) )
 	
 	randomize()
 	var rand = randi()%100
