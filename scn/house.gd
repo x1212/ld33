@@ -16,11 +16,10 @@ var vel = Vector3(0,0,0)
 var tick = 0.0
 
 var source = "rabbits"
+var spawner = true
 
 func _process(delta):
 	var ray = get_node("RayCast")
-	cam = get_parent().get_parent().get_parent().get_node("world/cam_root")
-	set_rotation( cam.get_rotation() + Vector3(0,0.5*PI,0) )
 	#print( ray.get_collider().get_name() )
 	randomize()
 	var rand = randi()%100
@@ -33,12 +32,16 @@ func _process(delta):
 			randomize()
 			vel = Vector3(0,0,0).rotated( Vector3(0,1,0), rand_range(0,360))
 	rand = randi()%1000
-	if ( rand > 500 and tick < 0.0 ):
-		get_parent().spawn_human_gather( get_translation(), source )
-		tick = 2.0
+	if ( tick < 0.0 and spawner ):
+		get_parent().get_node("human").spawn_human_gather( get_translation(), source )
+		tick = 20.0
+		spawner = false
 		print("spawn_human")
-	elif ( tick < 0.0 ):
-		tick = 1.0
+	elif ( tick < 0.0 and rand < 500):
+		tick = 20.0
+	elif ( tick < 0.0 and ( spawner == false )):
+		randomize()
+		get_parent().get_node("human").spawn_human_gather( get_translation() + Vector3(rand_range(1.0,3.0),0,0).rotated( Vector3(0,1,0), rand_range(0,360)), "eater" )
 	else:
 		tick -= delta
 	return
